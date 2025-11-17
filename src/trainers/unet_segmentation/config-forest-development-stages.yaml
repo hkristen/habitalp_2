@@ -1,0 +1,153 @@
+# Experiment Parameters
+name:
+  desc: Name of the experiment
+  value: "forest-classes-3"
+notes:
+  desc: Notes that can be passed to the wandb run
+  value: "Forest development stages"
+# Training Parameters
+num_labels:
+  desc: Number of target classes without the nodata class
+  value: 10
+precalculated_weights:
+  desc: Optional rescaling weight given to each class and used with 'ce' loss
+  value: [3.42523701e-07, 1.32005839e-08, 2.82596999e-08, 1.07504028e-08,
+          2.56719920e-08, 7.12993160e-07, 1.22850561e-07, 1.88841506e-07,
+          2.03767664e-06, 6.51627215e-09, 1.80829305e-08]
+ignore_index:
+  desc: Index to ignore in the loss function (e.g., nodata class)
+  value: 255
+matmul_precision:
+  desc: Internal precision of float32 matrix multiplications
+  value: "high"
+num_dataloader_workers:
+  desc: Number of parallel workers for data loading
+  value: 4
+gpu_id:
+  desc: GPU device ID to use
+  value: 0
+hyperparameters:
+  desc: Hyperparameter dictionary for model training
+  value: {
+    "batch_size": 32,
+    "patch_size": 256,
+    "learning_rate": 0.001,
+    "loss": "ce",
+    "monitor_metric": "val_MulticlassJaccardIndex",
+    "patience": 50,
+    "res": 0.5,
+    "train_batches_per_epoch": 512,
+    "val_batches_per_epoch": 64,
+    "model": "unet",
+    "backbone": "mit_b2",
+    "input_bands": ["rgb", "cir", "dtm", "dsm", "ndsm", "slope", "aspect", "tri", "tpi", "roughness_terrain", "roughness_canopy", "curvature", "planform_curvature", "profile_curvature"],
+    "use_pretrained_model_weights": True,
+    "min_epochs": 50,
+    "max_epochs": 500
+  }
+data_folder:
+  desc: Path to input data
+  value: "/dibhome/daniel.kulmer/HabitAlp2.0/Originaldaten"
+mask_path:
+  desc: Path to label mask image
+  value: "processed/mask/classes_forest_development_stages_v1_2013.tif"
+roi_shape_path:
+  desc: Path to ROI geopackage file
+  value: "roi/habitalp_2013_boundary.gpkg"
+image_data_paths:
+  desc: Relative paths & keys for the input imagery
+  value: {
+      "rgb": "processed/orthophoto_gis_stmk/flug_2013_2015_rgb.tif",
+      "cir": "processed/orthophoto_gis_stmk/falschfarben_2013_2015.tif",
+      "spot-4": "processed/spot-4/S4_H1_I_DT_20120911092120_TT_014380.tif",
+      "dtm": "processed/elevation_gis_stmk_2010_2012/dtm.tif",
+      "dsm": "processed/elevation_gis_stmk_2010_2012/dsm.tif",
+      "ndsm": "processed/elevation_gis_stmk_2010_2012/ndsm.tif",
+      "slope": "processed/elevation_gis_stmk_2010_2012/slope.tif",
+      "aspect": "processed/elevation_gis_stmk_2010_2012/aspect.tif",
+      "tri": "processed/elevation_gis_stmk_2010_2012/tri.tif",
+      "tpi": "processed/elevation_gis_stmk_2010_2012/tpi.tif",
+      "roughness_terrain": "processed/elevation_gis_stmk_2010_2012/roughness_terrain.tif",
+      "roughness_canopy": "processed/elevation_gis_stmk_2010_2012/roughness_canopy.tif",
+      "curvature": "processed/elevation_gis_stmk_2010_2012/curvature.tif",
+      "planform_curvature": "processed/elevation_gis_stmk_2010_2012/planform_curvature.tif",
+      "profile_curvature": "processed/elevation_gis_stmk_2010_2012/profile_curvature.tif",
+      "fhd": "processed/elevation_forest_attributes_2013/fhd.tif",
+      "kurtosis": "processed/elevation_forest_attributes_2013/kurtosis.tif",
+      "percentile_90": "processed/elevation_forest_attributes_2013/percentile_90.tif",
+      "skewness": "processed/elevation_forest_attributes_2013/skewness.tif",
+      "stddev": "processed/elevation_forest_attributes_2013/stddev.tif",
+      "vertical_structure": "processed/elevation_forest_attributes_2013/vertical_structure.tif",
+      "forest_mask": "processed/mask/binary_mask_forest_v1_2013.tif",
+  }
+# Evaluation Parameters:
+image_data_paths_pred_2020:
+  desc: Relative paths & keys for the prediction input imagery
+  value: {
+      "rgb": "processed/orthophoto_gis_stmk/flug_2019_2021_rgb.tif",
+      "cir": "processed/orthophoto_gis_stmk/falschfarben_2019_2021.tif",
+      "spot-4": null,
+      "dtm": "processed/elevation_fefimapla/dtm.tif",
+      "dsm": "processed/elevation_fefimapla/dsm.tif",
+      "ndsm": "processed/elevation_fefimapla/ndsm.tif",
+      "slope": "processed/elevation_fefimapla/slope.tif",
+      "aspect": "processed/elevation_fefimapla/aspect.tif",
+      "tri": "processed/elevation_fefimapla/tri.tif",
+      "tpi": "processed/elevation_fefimapla/tpi.tif",
+      "roughness_terrain": "processed/elevation_fefimapla/roughness_terrain.tif",
+      "roughness_canopy": "processed/elevation_fefimapla/roughness_canopy.tif",
+      "curvature": "processed/elevation_fefimapla/curvature.tif",
+      "planform_curvature": "processed/elevation_fefimapla/planform_curvature.tif",
+      "profile_curvature": "processed/elevation_fefimapla/profile_curvature.tif",
+      "fhd": "processed/elevation_forest_attributes_2020/fhd.tif",
+      "kurtosis": "processed/elevation_forest_attributes_2020/kurtosis.tif",
+      "percentile_90": "processed/elevation_forest_attributes_2020/percentile_90.tif",
+      "skewness": "processed/elevation_forest_attributes_2020/skewness.tif",
+      "stddev": "processed/elevation_forest_attributes_2020/stddev.tif",
+      "vertical_structure": "processed/elevation_forest_attributes_2020/vertical_structure.tif",
+  }
+image_data_paths_pred_2024:
+  desc: Relative paths & keys for the 2024 prediction input imagery (DTM-derived layers from 2013)
+  value: {
+      "rgb": "processed/orthophoto_gis_stmk/flug_2022_2024_rgb.tif",
+      "cir": "processed/orthophoto_gis_stmk/falschfarben_2022_2024.tif",
+      "spot-4": null,
+      "dtm": "processed/elevation_gis_stmk_2010_2012/dtm.tif",
+      "dsm": "processed/elevation_gis_stmk_photogrammetry_2022_2023/dsm.tif",
+      "ndsm": "processed/elevation_gis_stmk_photogrammetry_2022_2023/ndsm.tif",
+      "slope": "processed/elevation_gis_stmk_2010_2012/slope.tif",
+      "aspect": "processed/elevation_gis_stmk_2010_2012/aspect.tif",
+      "tri": "processed/elevation_gis_stmk_2010_2012/tri.tif",
+      "tpi": "processed/elevation_gis_stmk_2010_2012/tpi.tif",
+      "roughness_terrain": "processed/elevation_gis_stmk_2010_2012/roughness_terrain.tif",
+      "roughness_canopy": "processed/elevation_gis_stmk_photogrammetry_2022_2023/roughness_canopy.tif",
+      "curvature": "processed/elevation_gis_stmk_2010_2012/curvature.tif",
+      "planform_curvature": "processed/elevation_gis_stmk_2010_2012/planform_curvature.tif",
+      "profile_curvature": "processed/elevation_gis_stmk_2010_2012/profile_curvature.tif",
+      "fhd": null,
+      "kurtosis": null,
+      "percentile_90": null,
+      "skewness": null,
+      "stddev": null,
+      "vertical_structure": null,
+  }
+class_names:
+  desc: List with class names without the nodata class. Used for plot labels. (optional)
+  value: [
+    "Young growth",
+    "Thicket",
+    "Pole timber",
+    "Mature forest",
+    "Old forest",
+    "Two layers, old forest",
+    "Two layers, mixed forest",
+    "Multilayered",
+    "Shrub forest",
+    "Non-forest",
+    ]
+train_data_area_path:
+  desc: Area of training data for plots (optional)
+  value: null
+prediction_mask_path_2020:
+  desc: Path to label mask image of the prediction dataset
+  value: null

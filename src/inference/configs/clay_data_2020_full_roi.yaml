@@ -1,0 +1,47 @@
+# Configuration for 2020 data inference
+# All paths for input imagery and related data
+
+# Model type: 'clay' or 'unet'
+model_type: clay
+
+# Base data folder
+data_folder: "/home/hkristen/Nextcloud/HabitAlp2.0/Originaldaten/processed"
+
+# Input imagery paths
+input_data:
+  # RGB orthophoto from 2019-2021
+  rgb: "/home/hkristen/Nextcloud/HabitAlp2.0/Originaldaten/processed/orthophoto_gis_stmk/flug_2019_2021_rgb_clipped_clipped.tif"
+
+  # CIR (Color Infrared/False color) from 2019-2021
+  cir: "/home/hkristen/Nextcloud/HabitAlp2.0/Originaldaten/processed/orthophoto_gis_stmk/falschfarben_2019_2021.tif"
+
+  # nDSM (normalized Digital Surface Model)
+  ndsm: "/home/hkristen/Nextcloud/HabitAlp2.0/trainingsdaten_2020/Gesaeuse_nDSM_2020.tif"
+
+# Mask path (ground truth classes)
+mask_path: "/home/hkristen/Nextcloud/HabitAlp2.0/Originaldaten/processed/mask/classes_v3_2020.tif"
+
+# ROI (Region of Interest) path
+roi_path: "/home/hkristen/Nextcloud/HabitAlp2.0/trainingsdaten_2020/habitalp_2013_new_target_classes_v3_clipped.gpkg"
+
+# Model configurations
+models:
+  clay:
+    # Active checkpoint (best model from Oct 2025 experiments - mIoU=0.3695)
+    checkpoint: "/home/hkristen/Nextcloud/HabitAlp2.0/Originaldaten/model_output/clay_v1_base_rgb_cir_ndsm/checkpoints/CLAY_v1_0_EXP2_STABILITY_FIRST_RGB_CIR_NDSM/model-ocg72h08_v97_mIoU=0.3695.ckpt"
+
+    # Alternative checkpoints (change 'checkpoint' path above to use these):
+    # June 2025 - 2nd best (mIoU=0.3306):
+    #   "/home/hkristen/Nextcloud/HabitAlp2.0/Originaldaten/model_output/clay_v1_base_rgb_cir_ndsm/checkpoints/model-f64vg6b6_v40_mIoU=0.3306.ckpt"
+
+# Inference parameters
+inference:
+  patch_size: 256
+  overlap: 64
+  delta: 8
+  batch_size: 4
+  n_classes: 23
+
+# Output settings
+output:
+  dir: "/home/hkristen/Nextcloud/HabitAlp2.0/Originaldaten/model_output/clay_v1_base_rgb_cir_ndsm"
