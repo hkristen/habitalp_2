@@ -1,6 +1,6 @@
 # HabitAlp 2.0
 
-Official code repository for the paper **"Deep Learning for Habitat Mapping in the Alps"**.
+Official code repository for the paper **"Habitat and Land Cover Change Detection in Alpine Protected Areas: A Comparison of AI Architectures"**.
 
 **Paper:** [arXiv:2511.00073](https://arxiv.org/abs/2511.00073)
 **Dataset:** [huggingface.co/datasets/JR-DIGITAL/habitalp2.0](https://huggingface.co/datasets/JR-DIGITAL/habitalp2.0)
@@ -129,8 +129,8 @@ wandb_key = "YOUR_WANDB_API_KEY_HERE"  # Replace with your WandB API key
 
 ## Key Features
 
-- **Change Detection**: Binary and multi-class change detection between time periods
-- **Semantic Segmentation**: Direct habitat classification using foundation models (CLAY, Prithvi)
+- **Direct CD**: Binary and multi-class change detection between time periods
+- **Post-CLassifcation CD (Semantic Segmentation)**: Direct habitat classification using foundation models (CLAY, Prithvi)
 - **Geospatial Data Handling**: Custom samplers and datasets for working with large rasters
 - **Multi-Modal Input**: Support for RGB, CIR, and terrain features
 - **Production-Ready Inference**: Scripts for predicting on large images with tiling
@@ -140,11 +140,14 @@ wandb_key = "YOUR_WANDB_API_KEY_HERE"  # Replace with your WandB API key
 If you use this code or dataset in your research, please cite our paper:
 
 ```bibtex
-@article{habitalp2024,
-  title={Deep Learning for Habitat Mapping in the Alps},
-  author={[Authors]},
-  journal={arXiv preprint arXiv:2511.00073},
-  year={2024}
+@misc{kristen2025habitatlandcoverchange,
+      title={Habitat and Land Cover Change Detection in Alpine Protected Areas: A Comparison of AI Architectures}, 
+      author={Harald Kristen and Daniel Kulmer and Manuela Hirschmugl},
+      year={2025},
+      eprint={2511.00073},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2511.00073}, 
 }
 ```
 
