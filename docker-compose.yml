@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  habitalp_2:
+    image: hkristen/habitalp_2:v1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: habitalp_2
+
+    # Enable GPU access
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+    # Keep container running
+    stdin_open: true
+    tty: true
+
+    # Set environment variables
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      # - WANDB_API_KEY=${WANDB_API_KEY}  # Uncomment and set if using WandB
+
+    # Optional: Mount volumes for your data and outputs
+    # Uncomment and modify paths as needed for your setup
+    # volumes:
+    #   - /path/to/your/data:/data
+    #   - ./outputs:/workspace/habitalp_2/outputs
+    #   - ./checkpoints:/workspace/habitalp_2/checkpoints
+
+    # Optional: Expose Jupyter notebook port
+    # Uncomment if you want to run Jupyter notebooks
+    # ports:
+    #   - "8888:8888"

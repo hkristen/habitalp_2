@@ -41,6 +41,22 @@ This repository contains the code and notebooks used to develop deep learning mo
 
 ### Installation
 
+**Option 1: Using Docker (Recommended for Reproducibility)**
+
+The easiest way to reproduce our research environment is using Docker:
+
+```bash
+# Pull the pre-built image from Docker Hub
+docker pull hkristen/habitalp_2:v1
+
+# Run with GPU support
+docker run --gpus all -it hkristen/habitalp_2:v1
+```
+
+See [DOCKER.md](DOCKER.md) for detailed Docker setup instructions, including building locally, using docker-compose, and running Jupyter notebooks.
+
+**Option 2: Local Installation with Conda**
+
 1. Clone this repository:
 ```bash
 git clone https://github.com/hkristen/habitalp_2.git
@@ -50,7 +66,7 @@ cd habitalp_2
 2. Create the conda environment:
 ```bash
 conda env create -f env.yml
-conda activate geoai-stable
+conda activate habitalp_2
 ```
 
 ### Data
